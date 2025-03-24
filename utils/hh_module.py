@@ -128,7 +128,7 @@ async def get_resume_data(resume_id):
             r_json = await response.json()
             if r_status == 200:
                 print(f'Statsu: {r_status}')
-                pprint(r_json)
+                #pprint(r_json)
 
             elif r_status == 403:
                 pass
@@ -139,7 +139,7 @@ async def get_resume_data(resume_id):
                 print(r_json['errors'])
                 return error_text
 
-    print(list(r_json))
+    #print(list(r_json))
 
     fio = r_json["last_name"] + " " + r_json["first_name"]
     age = r_json["age"]
