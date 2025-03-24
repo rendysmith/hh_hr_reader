@@ -39,7 +39,8 @@ async def main():
     for idx, row in df.iterrows():
         print('\n-----------------------------------')
         interview = row['Собеседование']
-        if interview:
+        andrew = row['Андрей']
+        if interview or andrew:
             continue
 
         name = row['ФИО']
@@ -49,7 +50,7 @@ async def main():
         print('-----------------------------------')
 
         status = input('Введите 1 для анализа вакансии или пробел для пропуска: ')
-        print(type(status))
+        #print(type(status))
         if status == "":
             continue
 

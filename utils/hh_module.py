@@ -1,4 +1,5 @@
 import asyncio
+from distutils.command.build_scripts import first_line_re
 from pprint import pprint
 
 import aiohttp
@@ -139,9 +140,12 @@ async def get_resume_data(resume_id):
                 print(r_json['errors'])
                 return error_text
 
-    #print(list(r_json))
+    #pprint(r_json)
 
-    fio = r_json["last_name"] + " " + r_json["first_name"]
+    last_name = r_json.get("last_name") or 'No last name'
+    first_name = r_json.get("first_name") or 'No name'
+
+    fio = last_name + " " + first_name
     age = r_json["age"]
     gender = r_json["gender"]["name"]
     area = r_json["area"]["name"]
@@ -164,7 +168,6 @@ async def get_resume_data(resume_id):
     {skill_set}
     {skills}
     """
-
     return resume_description
 
 
