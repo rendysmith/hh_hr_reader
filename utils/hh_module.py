@@ -7,6 +7,8 @@ import requests
 from dotenv import load_dotenv
 import os
 
+
+
 dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
 load_dotenv(dotenv_path)
 
@@ -198,5 +200,14 @@ async def get_negotiations():
 
 
 if "__main__" in __name__:
-    a = asyncio.run(get_resume_data('ba185b570007f6ad4a0016c1266a7542366a44'))
+    from utils.ai_module import get_answer_ai
+    from requests.auth import HTTPBasicAuth
+
+    auth_username = os.environ.get("HOST_USERNAME")
+    auth_password = os.environ.get("HOST_PASSWORD")
+    auth = HTTPBasicAuth(auth_username, auth_password)
+
+    a = asyncio.run(get_resume_data('a91a48aa000e0f4d6b0016c126535131595341'))
     print(a)
+
+    result = asyncio.run(get_answer_ai(auth, prompt))
